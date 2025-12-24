@@ -228,13 +228,15 @@ if ($result) {
                         </div>
                     <?php endif; ?>
 
-                    <div class="p-image">
+                    <a href="product_detail.php?id=<?php echo $product['id']; ?>" class="p-image"
+                        style="display:block; text-decoration:none; color:inherit;">
                         <img src="<?php echo htmlspecialchars($product['image_url']); ?>" alt="">
                         <div class="free-cargo-bar">ÜCRETSİZ KARGO</div>
-                    </div>
+                    </a>
 
                     <div class="p-details">
-                        <div class="p-title"><?php echo htmlspecialchars($product['name']); ?></div>
+                        <a href="product_detail.php?id=<?php echo $product['id']; ?>" class="p-title"
+                            style="display:block; text-decoration:none; color:inherit;"><?php echo htmlspecialchars($product['name']); ?></a>
                         <div class="p-stars">
                             <?php
                             for ($i = 0; $i < 5; $i++)

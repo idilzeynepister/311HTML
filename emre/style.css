@@ -528,7 +528,242 @@ header {
 footer {
     border-top: 1px solid #eee;
     padding-top: 40px;
-    margin-top: 40px;
+}
+
+/* --- Product Detail Page Styles --- */
+
+.product-detail-container {
+    display: flex;
+    gap: 30px;
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+.detail-left {
+    width: 500px;
+    flex-shrink: 0;
+}
+
+.detail-image-wrapper {
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    padding: 20px;
+    position: relative;
+    margin-bottom: 15px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detail-image-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.detail-thumbnails {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.thumb {
+    width: 60px;
+    height: 80px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.thumb.active {
+    border-color: #333;
+}
+
+.thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.detail-right {
+    flex: 1;
+}
+
+.detail-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.3;
+    margin-bottom: 15px;
+}
+
+.detail-rating-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-rating-row .stars {
+    color: #f5ad00;
+    font-size: 14px;
+}
+
+.review-count {
+    color: #333;
+    font-size: 13px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.sku-code {
+    color: #999;
+    font-size: 12px;
+    margin-left: auto;
+}
+
+.detail-price-box {
+    background: #fbfbfb;
+    border: 1px solid #fefefe;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    /* N11 Style box usually has a slight background */
+}
+
+.detail-old-price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.detail-old-price .strike {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 16px;
+}
+
+.discount-rate {
+    color: var(--primary-red);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.detail-current-price {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.detail-current-price span {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.detail-sepette-label {
+    color: var(--primary-red);
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.detail-cargo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #effbf5;
+    color: #0bc15c;
+    border: 1px solid #0bc15c;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.detail-actions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.quantity-selector {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 48px;
+}
+
+.qty-btn {
+    width: 35px;
+    background: #f5f5f5;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: #555;
+}
+
+.qty-input {
+    width: 40px;
+    text-align: center;
+    border: none;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    font-weight: 600;
+}
+
+.add-to-cart-btn {
+    flex: 1;
+    height: 48px;
+    background-color: #5fba4b;
+    /* Green add to cart */
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    border-radius: 4px;
+    cursor: not-allowed;
+    /* Intentionally disabled/mock */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background 0.2s;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #4ca33a;
+}
+
+.buy-now-btn {
+    width: 100%;
+    height: 40px;
+    background: white;
+    border: 1px solid #333;
+    color: #333;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 25px;
+}
+
+.buy-now-btn:hover {
+    background: #f5f5f5;
+}
+
+.detail-features {
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #555;
 }
 
 /* --- Product Listing Page Styles --- */

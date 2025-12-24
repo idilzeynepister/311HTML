@@ -39,7 +39,6 @@ if (isset($_GET['category']) && !empty($_GET['category'])) {
     $whereClauses[] = "(name LIKE ? OR brand LIKE ?)"; // Loose matching for demo
     $params[] = "%" . $_GET['category'] . "%";
     $params[] = "%" . $_GET['category'] . "%";
-    $params[] = "%" . $_GET['category'] . "%";
     $types .= "ss";
 }
 
@@ -199,27 +198,33 @@ $categories = ['Spor Ayakkabı', 'Günlük Ayakkabı', 'Bot & Çizme', 'Topuklu 
                     <div class="filter-header">Fiyat Aralığı</div>
                     <div class="filter-content">
                         <div style="display:flex; gap:5px;">
-                            <input type="number" id="min_price" placeholder="En Az" value="<?php echo isset($_GET['min_price']) ? htmlspecialchars($_GET['min_price']) : ''; ?>" style="width:45%; padding:5px; border:1px solid #ddd; font-size:12px;">
-                            <input type="number" id="max_price" placeholder="En Çok" value="<?php echo isset($_GET['max_price']) ? htmlspecialchars($_GET['max_price']) : ''; ?>" style="width:45%; padding:5px; border:1px solid #ddd; font-size:12px;">
-                            <button onclick="applyPriceFilter()" style="width:25px; height:25px; background:#ccc; border:none; color:white; cursor:pointer;"><i class="fas fa-search"></i></button>
+                            <input type="number" id="min_price" placeholder="En Az"
+                                value="<?php echo isset($_GET['min_price']) ? htmlspecialchars($_GET['min_price']) : ''; ?>"
+                                style="width:45%; padding:5px; border:1px solid #ddd; font-size:12px;">
+                            <input type="number" id="max_price" placeholder="En Çok"
+                                value="<?php echo isset($_GET['max_price']) ? htmlspecialchars($_GET['max_price']) : ''; ?>"
+                                style="width:45%; padding:5px; border:1px solid #ddd; font-size:12px;">
+                            <button onclick="applyPriceFilter()"
+                                style="width:25px; height:25px; background:#ccc; border:none; color:white; cursor:pointer;"><i
+                                    class="fas fa-search"></i></button>
                         </div>
                     </div>
                 </div>
 
                 <script>
-                function applyPriceFilter() {
-                    const min = document.getElementById('min_price').value;
-                    const max = document.getElementById('max_price').value;
-                    const url = new URL(window.location.href);
-                    
-                    if (min) url.searchParams.set('min_price', min); 
-                    else url.searchParams.delete('min_price');
-                    
-                    if (max) url.searchParams.set('max_price', max); 
-                    else url.searchParams.delete('max_price');
-                    
-                    window.location.href = url.toString();
-                }
+                    function applyPriceFilter() {
+                        const min = document.getElementById('min_price').value;
+                        const max = document.getElementById('max_price').value;
+                        const url = new URL(window.location.href);
+
+                        if (min) url.searchParams.set('min_price', min);
+                        else url.searchParams.delete('min_price');
+
+                        if (max) url.searchParams.set('max_price', max);
+                        else url.searchParams.delete('max_price');
+
+                        window.location.href = url.toString();
+                    }
                 </script>
             </aside>
 
@@ -245,12 +250,14 @@ $categories = ['Spor Ayakkabı', 'Günlük Ayakkabı', 'Bot & Çizme', 'Topuklu 
                                     <div class="pl-badge-discount">%<?php echo $product['discount_rate']; ?></div>
                                 <?php endif; ?>
 
-                                <div class="pl-image">
+                                <a href="product_detail.php?id=<?php echo $product['id']; ?>" class="pl-image"
+                                    style="display:block; text-decoration:none; color:inherit;">
                                     <img src="<?php echo htmlspecialchars($product['image_url']); ?>" alt="">
-                                </div>
+                                </a>
 
                                 <div class="pl-details">
-                                    <div class="pl-title"><?php echo htmlspecialchars($product['name']); ?></div>
+                                    <a href="product_detail.php?id=<?php echo $product['id']; ?>" class="pl-title"
+                                        style="display:block; text-decoration:none; color:inherit;"><?php echo htmlspecialchars($product['name']); ?></a>
                                     <div class="pl-rating">
                                         <?php
                                         for ($i = 0; $i < 5; $i++)
