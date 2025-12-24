@@ -145,11 +145,34 @@ $categories = ['Spor Ayakkabı', 'Günlük Ayakkabı', 'Bot & Çizme', 'Topuklu 
         <div class="container">
             <ul class="nav-list">
                 <li class="nav-item">
-                    <a href="index.php"
-                        style="display:flex; align-items:center; gap:5px; text-decoration:none; color:inherit;">
+                    <a href="products.php"
+                        style="display:flex; align-items:center; gap:5px; text-decoration:none; color:inherit; height:100%;">
                         <img src="https://n11scdn.akamaized.net/a1/org/23/04/18/76/01/26/51/76012651.svg" width="24"
-                            alt=""> <span>Moda</span>
+                            alt="">
+                        <span>Moda</span>
                     </a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-header">Moda</div>
+                        <div class="dropdown-grid">
+                            <a href="products.php" class="dropdown-item">
+                                <img src="https://n11scdn.akamaized.net/a1/org/23/04/18/76/01/26/51/76012651.svg"
+                                    class="dropdown-thumb" alt="">
+                                <span class="dropdown-title">Ayakkabı & Çanta</span>
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <img src="https://placehold.co/80x80/eee/333?text=Kadin" class="dropdown-thumb" alt="">
+                                <span class="dropdown-title">Kadın Giyim & Aksesuar</span>
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <img src="https://placehold.co/80x80/eee/333?text=Erkek" class="dropdown-thumb" alt="">
+                                <span class="dropdown-title">Erkek Giyim & Aksesuar</span>
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <img src="https://placehold.co/80x80/eee/333?text=Cocuk" class="dropdown-thumb" alt="">
+                                <span class="dropdown-title">Çocuk Giyim & Aksesuar</span>
+                            </a>
+                        </div>
+                    </div>
                 </li>
                 <li class="nav-item"><i class="fas fa-desktop"></i> <span>Elektronik</span></li>
                 <li class="nav-item"><i class="fas fa-home"></i> <span>Ev & Yaşam</span></li>
