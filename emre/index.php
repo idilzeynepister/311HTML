@@ -4,10 +4,10 @@ require_once 'db.php';
 // Fetch products for shelf
 // Limit to 5 for the row as per screenshot
 $sql = "SELECT * FROM products LIMIT 5";
-$result = mysqli_query($conn, $sql);
+$result = $conn->query($sql);
 $products = [];
 if ($result) {
-    while ($row = mysqli_fetch_assoc($result)) {
+    while ($row = $result->fetch_assoc()) {
         $products[] = $row;
     }
 }
@@ -112,7 +112,8 @@ if ($result) {
                     <div class="promo-text-box">
                         <h3>Seçili Ürünlerde</h3>
                         <h1>%70'e Varan Sepette İndirim</h1>
-                        <a href="#" class="btn-pink">İndirimi Yakala <i class="fas fa-arrow-right"></i></a>
+                        <a href="products.php?brand=DeFacto" class="btn-pink">İndirimi Yakala <i
+                                class="fas fa-arrow-right"></i></a>
                     </div>
 
                     <div
@@ -130,7 +131,7 @@ if ($result) {
                     <div class="promo-text-box">
                         <h3>Yeni Sezon</h3>
                         <h1>Mavi'de Büyük Kış İndirimi</h1>
-                        <a href="#" class="btn-pink">Fırsatı Kaçırma <i class="fas fa-arrow-right"></i></a>
+                        <a href="products.php" class="btn-pink">Fırsatı Kaçırma <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -143,7 +144,8 @@ if ($result) {
                     <div class="promo-text-box">
                         <h3>Koton</h3>
                         <h1>Parti Koleksiyonu Yayında</h1>
-                        <a href="#" class="btn-pink">Keşfet <i class="fas fa-arrow-right"></i></a>
+                        <a href="products.php?brand=Koton" class="btn-pink">Keşfet <i
+                                class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -156,7 +158,8 @@ if ($result) {
                     <div class="promo-text-box">
                         <h3>Jack & Jones</h3>
                         <h1>Erkek Modasında Dev İndirim</h1>
-                        <a href="#" class="btn-pink">Alışverişe Başla <i class="fas fa-arrow-right"></i></a>
+                        <a href="products.php?brand=JackJones" class="btn-pink">Alışverişe Başla <i
+                                class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -169,7 +172,8 @@ if ($result) {
                     <div class="promo-text-box">
                         <h3>Mücevher & Saat</h3>
                         <h1>Yılbaşına Özel Fırsatlar</h1>
-                        <a href="#" class="btn-pink">İncele <i class="fas fa-arrow-right"></i></a>
+                        <a href="products.php?category=Mucevher" class="btn-pink">İncele <i
+                                class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -254,81 +258,81 @@ if ($result) {
 
         <!-- Brand Grid -->
         <section class="brand-grid">
-            <div class="brand-box">
+            <a href="products.php?brand=DeFacto" class="brand-box" style="text-decoration:none;">
                 <div class="brand-visual"
                     style="background-image: url('https://placehold.co/400x150/f0f0f0/333?text=DeFacto');"></div>
                 <div class="brand-info">
                     <span>%70'e Varan Sepette İndirim</span>
                     <span style="font-weight: 400; color:#ccc;">22-25 Aralık</span>
                 </div>
-            </div>
-            <div class="brand-box">
+            </a>
+            <a href="products.php?brand=CABANI" class="brand-box" style="text-decoration:none;">
                 <div class="brand-visual"
                     style="background-image: url('https://placehold.co/400x150/f0f0f0/333?text=CABANI');"></div>
                 <div class="brand-info">
                     <span>%30'a Varan Sepette İndirim</span>
                     <span style="font-weight: 400; color:#ccc;">22-25 Aralık</span>
                 </div>
-            </div>
-            <div class="brand-box">
+            </a>
+            <a href="products.php?brand=USPOLO" class="brand-box" style="text-decoration:none;">
                 <div class="brand-visual"
                     style="background-image: url('https://placehold.co/400x150/f0f0f0/333?text=US+POLO');"></div>
                 <div class="brand-info">
                     <span>%60'a Varan İndirim</span>
                     <span style="font-weight: 400; color:#ccc;">22-25 Aralık</span>
                 </div>
-            </div>
+            </a>
             <!-- Row 2 -->
-            <div class="brand-box">
+            <a href="products.php?brand=SALOMON" class="brand-box" style="text-decoration:none;">
                 <div class="brand-visual"
                     style="background-image: url('https://placehold.co/400x150/f0f0f0/333?text=SALOMON');"></div>
                 <div class="brand-info">
                     <span>Sepette %25'e Varan İndirimler</span>
                     <span style="font-weight: 400; color:#ccc;">22-25 Aralık</span>
                 </div>
-            </div>
-            <div class="brand-box">
+            </a>
+            <a href="products.php?brand=MANUKA" class="brand-box" style="text-decoration:none;">
                 <div class="brand-visual"
                     style="background-image: url('https://placehold.co/400x150/f0f0f0/333?text=MANUKA');"></div>
                 <div class="brand-info">
                     <span>İndirimlere Ek 100 TL Kupon Fırsatı</span>
                     <span style="font-weight: 400; color:#ccc;">22-25 Aralık</span>
                 </div>
-            </div>
-            <div class="brand-box">
+            </a>
+            <a href="products.php?brand=SaatSaat" class="brand-box" style="text-decoration:none;">
                 <div class="brand-visual"
                     style="background-image: url('https://placehold.co/400x150/f0f0f0/333?text=saat%26saat');"></div>
                 <div class="brand-info">
                     <span>Kaçmaz Modeller</span>
                     <span style="font-weight: 400; color:#ccc;">22-25 Aralık</span>
                 </div>
-            </div>
+            </a>
 
             <!-- Row 3 -->
-            <div class="brand-box">
+            <a href="products.php?brand=DILVIN" class="brand-box" style="text-decoration:none;">
                 <div class="brand-visual"
                     style="background-image: url('https://placehold.co/400x150/f0f0f0/333?text=DILVIN');"></div>
                 <div class="brand-info">
                     <span>%25 Sepette İndirim</span>
                     <span style="font-weight: 400; color:#ccc;">22-25 Aralık</span>
                 </div>
-            </div>
-            <div class="brand-box">
+            </a>
+            <a href="products.php?brand=MAI" class="brand-box" style="text-decoration:none;">
                 <div class="brand-visual"
                     style="background-image: url('https://placehold.co/400x150/f0f0f0/333?text=MAI+STUDIOS');"></div>
                 <div class="brand-info">
                     <span>%50 Sepette İndirim</span>
                     <span style="font-weight: 400; color:#ccc;">22-25 Aralık</span>
                 </div>
-            </div>
-            <div class="brand-box">
+            </a>
+            <a href="products.php?brand=Mavi" class="brand-box" style="text-decoration:none;">
                 <div class="brand-visual"
                     style="background-image: url('https://placehold.co/400x150/f0f0f0/333?text=mavi');"></div>
                 <div class="brand-info">
                     <span>%40'a Varan İndirim</span>
                     <span style="font-weight: 400; color:#ccc;">22-25 Aralık</span>
                 </div>
-            </div>
+            </a>
         </section>
 
     </div>
