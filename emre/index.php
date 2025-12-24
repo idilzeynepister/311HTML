@@ -50,7 +50,7 @@ if ($result) {
                     <i class="fas fa-map-marker-alt" style="font-size: 16px;"></i>
                     <div class="location-text">
                         <span>TESLİMAT ADRESİ</span>
-                        <a href="#">Adres Ekle</a>
+                        <a href="#" style="color:black; text-decoration:none;">Adres Ekle</a>
                     </div>
                 </div>
 
