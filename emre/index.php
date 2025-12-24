@@ -65,9 +65,9 @@ if ($result) {
                             <span>Merhaba, <?php echo htmlspecialchars($_SESSION['username']); ?></span>
                             <span><a href="logout.php" style="color:#666; text-decoration:none;">Çıkış Yap</a></span>
                         <?php else: ?>
-                            <span>HESABIM</span>
-                            <span><a href="login.php" style="color:#666; text-decoration:none;">Giriş Yap</a> / <a href="#"
-                                    style="color:#666; text-decoration:none;">Üye Ol</a></span>
+                            <span><a href="login.php" style="color:black; text-decoration:none;">HESABIM</a></span>
+                            <span><a href="login.php" style="color:#666; text-decoration:none;">Giriş Yap</a> / <a
+                                    href="login.php" style="color:#666; text-decoration:none;">Üye Ol</a></span>
                         <?php endif; ?>
                     </div>
                 </div>
