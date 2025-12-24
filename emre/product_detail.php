@@ -61,15 +61,21 @@ if (!$product) {
                     </div>
                 </div>
 
-                <div class="user-menu">
+                <a href="cart.php" class="user-menu" style="text-decoration:none; color:inherit;">
                     <i class="fas fa-shopping-cart" style="font-size: 18px;"></i>
-                </div>
+                </a>
 
                 <div class="user-menu">
                     <i class="far fa-user" style="font-size: 18px;"></i>
                     <div class="user-text">
-                        <span>HESABIM</span>
-                        <span>Üye Ol Giriş Yap</span>
+                        <?php if (isset($_SESSION['username'])): ?>
+                            <span>Merhaba, <?php echo htmlspecialchars($_SESSION['username']); ?></span>
+                            <span><a href="logout.php" style="color:#666; text-decoration:none;">Çıkış Yap</a></span>
+                        <?php else: ?>
+                            <span>HESABIM</span>
+                            <span><a href="login.php" style="color:#666; text-decoration:none;">Giriş Yap</a> / <a href="#"
+                                    style="color:#666; text-decoration:none;">Üye Ol</a></span>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -234,13 +240,60 @@ if (!$product) {
         }
 
         // Future Add to Cart Mock
+        // Add to Cart Logic
+        // Add to Cart Logic
         function prepareAddToCart() {
             const qty = document.getElementById('productQty').value;
             const productId = <?php echo $product['id']; ?>;
 
-            // This is where you will implement the AJAX call or form submission
-            console.log("Ready to add to cart:", { id: productId, quantity: qty });
-            alert("Ürün sepete eklenecek (Hazırlık).\\nÜrün ID: " + productId + "\\nAdet: " + qty);
+            // AJAX Request
+            const formData = new FormData();
+            formData.append('product_id', productId);
+            formData.append('quantity', qty);
+
+            fetch('add_to_cart.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        showToast(data.message);
+                    } else {
+                        if (data.message.includes('giriş')) {
+                            if (confirm(data.message + "\nGiriş sayfasına yönlendirilsin mi?")) {
+                                window.location.href = 'login.php';
+                            }
+                        } else {
+                            alert("Hata: " + data.message);
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Bir hata oluştu.');
+                });
+        }
+
+        function showToast(message) {
+            let toast = document.getElementById('toast-notification');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'toast-notification';
+                toast.className = 'toast-notification';
+                toast.innerHTML = '<i class="fas fa-check-circle"></i> <span>' + message + '</span>';
+                document.body.appendChild(toast);
+            } else {
+                toast.querySelector('span').innerText = message;
+            }
+
+            // Show
+            setTimeout(() => toast.classList.add('show'), 10);
+
+            // Hide after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
         }
     </script>
 

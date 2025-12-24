@@ -82,3 +82,29 @@ INSERT INTO products (name, price, old_price, image_url, brand, discount_rate, c
 ('Nine West Stiletto Topuklu Ayakkabı', 1200.00, 2000.00, 'https://placehold.co/400x500/000/fff?text=Stiletto', 'Nine West', 40, NULL, 4.5, 200),
 ('Derimod Platform Topuklu Ayakkabı', 1500.00, 2400.00, 'https://placehold.co/400x500/000/fff?text=Platform', 'Derimod', 37, NULL, 4.4, 150),
 ('Bambi Klasik Topuklu Ayakkabı', 900.00, 1500.00, 'https://placehold.co/400x500/000/fff?text=Bambi', 'Bambi', 40, NULL, 4.1, 300);
+
+-- Users Table
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    full_name VARCHAR(100),
+    email VARCHAR(100)
+);
+
+-- Insert Test User (admin / 1234)
+INSERT INTO users (username, password, full_name, email) VALUES 
+('admin', '1234', 'Admin User', 'admin@n11.com')
+ON DUPLICATE KEY UPDATE password='1234';
+
+-- Cart Table
+CREATE TABLE IF NOT EXISTS cart (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE,
+    UNIQUE KEY unique_cart_item (user_id, product_id)
+);

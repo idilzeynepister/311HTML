@@ -119,15 +119,21 @@ $categories = ['Spor Ayakkabı', 'Günlük Ayakkabı', 'Bot & Çizme', 'Topuklu 
                     </div>
                 </div>
 
-                <div class="user-menu">
+                <a href="cart.php" class="user-menu" style="text-decoration:none; color:inherit;">
                     <i class="fas fa-shopping-cart" style="font-size: 18px;"></i>
-                </div>
+                </a>
 
                 <div class="user-menu">
                     <i class="far fa-user" style="font-size: 18px;"></i>
                     <div class="user-text">
-                        <span>HESABIM</span>
-                        <span>Üye Ol Giriş Yap</span>
+                        <?php if (isset($_SESSION['username'])): ?>
+                            <span>Merhaba, <?php echo htmlspecialchars($_SESSION['username']); ?></span>
+                            <span><a href="logout.php" style="color:#666; text-decoration:none;">Çıkış Yap</a></span>
+                        <?php else: ?>
+                            <span>HESABIM</span>
+                            <span><a href="login.php" style="color:#666; text-decoration:none;">Giriş Yap</a> / <a href="#"
+                                    style="color:#666; text-decoration:none;">Üye Ol</a></span>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
