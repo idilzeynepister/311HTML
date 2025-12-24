@@ -15,7 +15,6 @@ if ($id > 0) {
 }
 
 if (!$product) {
-    // Fallback or redirect if no product found (for now just show a message)
     die("Product not found.");
 }
 ?>
@@ -33,7 +32,6 @@ if (!$product) {
 
 <body>
 
-    <!-- Header (Same as index) -->
     <header>
         <div class="container header-container">
             <a href="index.php" class="logo-container">
@@ -82,7 +80,6 @@ if (!$product) {
         </div>
     </header>
 
-    <!-- Navigation -->
     <nav class="main-nav">
         <div class="container">
             <ul class="nav-list">
@@ -124,9 +121,7 @@ if (!$product) {
         </div>
     </nav>
 
-    <!-- Main Content -->
     <div class="container">
-        <!-- Breadcrumbs -->
         <div class="listing-breadcrumb">
             <a href="index.php">Ana Sayfa</a> > <a href="index.php">Moda</a> > <a href="products.php">Ayakkabı &
                 Çanta</a> > <span><?php echo htmlspecialchars($product['name']); ?></span>
@@ -134,7 +129,6 @@ if (!$product) {
 
         <div class="product-detail-container">
 
-            <!-- Left: Image -->
             <div class="detail-left">
                 <div class="detail-image-wrapper">
                     <?php if ($product['coupon']): ?>
@@ -147,7 +141,6 @@ if (!$product) {
                     <img id="mainImage" src="<?php echo htmlspecialchars($product['image_url']); ?>"
                         alt="<?php echo htmlspecialchars($product['name']); ?>">
                 </div>
-                <!-- Thumbnail mockup -->
                 <div class="detail-thumbnails">
                     <div class="thumb active"
                         onclick="changeImage(this, '<?php echo htmlspecialchars($product['image_url']); ?>')">
@@ -168,7 +161,6 @@ if (!$product) {
                 </div>
             </div>
 
-            <!-- Right: Info -->
             <div class="detail-right">
                 <h1 class="detail-title"><?php echo htmlspecialchars($product['name']); ?></h1>
 
@@ -241,17 +233,12 @@ if (!$product) {
     </footer>
 
     <script>
-        // Image Gallery Logic
         function changeImage(thumb, src) {
-            // Update main image
             document.getElementById('mainImage').src = src;
-
-            // Update active class on thumbnails
             document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
             thumb.classList.add('active');
         }
 
-        // Quantity Selector Logic
         function updateQty(change) {
             const qtyInput = document.getElementById('productQty');
             let currentQty = parseInt(qtyInput.value);
@@ -262,14 +249,10 @@ if (!$product) {
             qtyInput.value = newQty;
         }
 
-        // Future Add to Cart Mock
-        // Add to Cart Logic
-        // Add to Cart Logic
         function prepareAddToCart() {
             const qty = document.getElementById('productQty').value;
             const productId = <?php echo $product['id']; ?>;
 
-            // AJAX Request
             const formData = new FormData();
             formData.append('product_id', productId);
             formData.append('quantity', qty);
@@ -310,10 +293,8 @@ if (!$product) {
                 toast.querySelector('span').innerText = message;
             }
 
-            // Show
             setTimeout(() => toast.classList.add('show'), 10);
 
-            // Hide after 3 seconds
             setTimeout(() => {
                 toast.classList.remove('show');
             }, 3000);

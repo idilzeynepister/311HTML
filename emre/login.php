@@ -10,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($username) || empty($password)) {
         $error = "Lütfen kullanıcı adı ve şifre giriniz.";
     } else {
-        // Direct comparison (no hashing as requested)
         $stmt = $conn->prepare("SELECT * FROM users WHERE username = ? AND password = ?");
         $stmt->bind_param("ss", $username, $password);
         $stmt->execute();
@@ -83,7 +82,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             width: 100%;
             padding: 12px;
             background-color: #5d3ebc;
-            /* n11 purple/blueish login color usually, or stick to red */
             background-color: #e11830;
             color: white;
             border: none;

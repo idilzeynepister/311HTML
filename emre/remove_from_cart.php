@@ -17,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
-    // Verify item belongs to user
     $check = $conn->prepare("SELECT id FROM cart WHERE id = ? AND user_id = ?");
     $check->bind_param("ii", $cart_id, $user_id);
     $check->execute();

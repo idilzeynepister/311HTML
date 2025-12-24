@@ -1,8 +1,6 @@
 <?php
 require_once 'db.php';
 
-// Fetch products for shelf
-// Limit to 5 for the row as per screenshot
 $sql = "SELECT * FROM products LIMIT 5";
 $result = $conn->query($sql);
 $products = [];
@@ -26,7 +24,6 @@ if ($result) {
 
 <body>
 
-    <!-- Header -->
     <header>
         <div class="container header-container">
             <a href="#" class="logo-container">
@@ -75,7 +72,6 @@ if ($result) {
         </div>
     </header>
 
-    <!-- Navigation -->
     <nav class="main-nav">
         <div class="container">
             <ul class="nav-list">
@@ -125,17 +121,13 @@ if ($result) {
         </div>
     </nav>
 
-    <!-- Main Content -->
     <div class="container">
 
-        <!-- Breadcrumbs -->
         <div style="font-size: 12px; color: #666; margin-bottom: 10px;">
             Ana Sayfa > Moda
         </div>
 
-        <!-- Banner Carousel -->
         <section class="hero-slider">
-            <!-- Slide 1 -->
             <div class="banner-slide active"
                 style="background-color: #dedede; background-image: url('https://placehold.co/1200x400/e0e0e0/999?text=Defacto+Banner');">
                 <div class="banner-content">
@@ -155,7 +147,6 @@ if ($result) {
                 </div>
             </div>
 
-            <!-- Slide 2 -->
             <div class="banner-slide"
                 style="background-color: #cceeff; background-image: url('https://placehold.co/1200x400/cceeff/005588?text=Mavi+Banner');">
                 <div class="banner-content">
@@ -168,7 +159,6 @@ if ($result) {
                 </div>
             </div>
 
-            <!-- Slide 3 -->
             <div class="banner-slide"
                 style="background-color: #ffeeff; background-image: url('https://placehold.co/1200x400/ffeeff/880055?text=Koton+Banner');">
                 <div class="banner-content">
@@ -182,7 +172,6 @@ if ($result) {
                 </div>
             </div>
 
-            <!-- Slide 4 -->
             <div class="banner-slide"
                 style="background-color: #eef2ff; background-image: url('https://placehold.co/1200x400/eef2ff/333399?text=JackJones+Banner');">
                 <div class="banner-content">
@@ -196,7 +185,6 @@ if ($result) {
                 </div>
             </div>
 
-            <!-- Slide 5 -->
             <div class="banner-slide"
                 style="background-color: #fff9e6; background-image: url('https://placehold.co/1200x400/fff9e6/cc9900?text=Altin+Banner');">
                 <div class="banner-content">
@@ -210,7 +198,6 @@ if ($result) {
                 </div>
             </div>
 
-            <!-- Controls -->
             <button class="slider-btn prev"><i class="fas fa-chevron-left"></i></button>
             <button class="slider-btn next"><i class="fas fa-chevron-right"></i></button>
 
@@ -223,7 +210,6 @@ if ($result) {
             </div>
         </section>
 
-        <!-- Quick Links -->
         <section class="quick-links-row">
             <div class="link-item">
                 <div class="icon-placeholder"><i class="fas fa-ticket-alt"></i></div>
@@ -247,7 +233,6 @@ if ($result) {
             </div>
         </section>
 
-        <!-- Product Shelf Row -->
         <section class="product-shelf-row">
             <?php foreach ($products as $product): ?>
                 <div class="product-item">
@@ -290,7 +275,6 @@ if ($result) {
             <?php endforeach; ?>
         </section>
 
-        <!-- Brand Grid -->
         <section class="brand-grid">
             <a href="products.php?brand=DeFacto" class="brand-box" style="text-decoration:none;">
                 <div class="brand-visual"
@@ -316,7 +300,6 @@ if ($result) {
                     <span style="font-weight: 400; color:#ccc;">22-25 Aralık</span>
                 </div>
             </a>
-            <!-- Row 2 -->
             <a href="products.php?brand=SALOMON" class="brand-box" style="text-decoration:none;">
                 <div class="brand-visual"
                     style="background-image: url('https://placehold.co/400x150/f0f0f0/333?text=SALOMON');"></div>
@@ -342,7 +325,6 @@ if ($result) {
                 </div>
             </a>
 
-            <!-- Row 3 -->
             <a href="products.php?brand=DILVIN" class="brand-box" style="text-decoration:none;">
                 <div class="brand-visual"
                     style="background-image: url('https://placehold.co/400x150/f0f0f0/333?text=DILVIN');"></div>

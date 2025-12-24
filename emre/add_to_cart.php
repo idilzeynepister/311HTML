@@ -18,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
-    // Check if product exists
     $sql = "SELECT id, price FROM products WHERE id = $product_id";
     $result = $conn->query($sql);
 
@@ -27,10 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
-    // Insert or Update Cart
-    // Using ON DUPLICATE KEY UPDATE to handle existing items (increment quantity)
-    // Note: If user wants to "set" quantity to a specific number (not add), logic would be different.
-    // Assuming "Add to Cart" means "Add this many more".
     $sql = "INSERT INTO cart (user_id, product_id, quantity) VALUES ($user_id, $product_id, $quantity)
             ON DUPLICATE KEY UPDATE quantity = quantity + VALUES(quantity)";
 

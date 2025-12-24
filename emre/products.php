@@ -1,7 +1,5 @@
 <?php
 require_once 'db.php';
-
-// Filter & Search Logic
 $whereClauses = [];
 $params = [];
 $types = "";
@@ -30,19 +28,13 @@ if (isset($_GET['brand']) && !empty($_GET['brand'])) {
 }
 
 if (isset($_GET['category']) && !empty($_GET['category'])) {
-    // Determine category matching logic (assuming a 'category' or similar column logic, 
-    // or just 'name LIKE' if category column doesn't exist, but Setup.sql likely has generic structure.
-    // Checking setup.sql... User said 'products table... id, name, price... brand, discount_rate'. 
-    // I don't recall a category column. I'll assume 'name' or just default to brand-like behavior or add a column?
-    // User provided setup.sql earlier. Let's check db assumption.
-    // If no category column, I'll filter by name LIKE category for now to be safe/simple.)
-    $whereClauses[] = "(name LIKE ? OR brand LIKE ?)"; // Loose matching for demo
+    $whereClauses[] = "(name LIKE ? OR brand LIKE ?)";
+    $whereClauses[] = "(name LIKE ? OR brand LIKE ?)";
     $params[] = "%" . $_GET['category'] . "%";
     $params[] = "%" . $_GET['category'] . "%";
     $types .= "ss";
 }
 
-// Price Filter Logic
 if (isset($_GET['min_price']) && is_numeric($_GET['min_price'])) {
     $whereClauses[] = "price >= ?";
     $params[] = $_GET['min_price'];
@@ -72,7 +64,6 @@ while ($row = mysqli_fetch_assoc($result)) {
     $products[] = $row;
 }
 
-// Sidebar data (mock)
 $brands = ['Adidas', 'Nike', 'Puma', 'Jack & Jones', 'Mavi', 'Koton', 'US Polo Assn.', 'Hummel'];
 $categories = ['Spor Ayakkabı', 'Günlük Ayakkabı', 'Bot & Çizme', 'Topuklu Ayakkabı', 'Çanta'];
 ?>
@@ -90,7 +81,6 @@ $categories = ['Spor Ayakkabı', 'Günlük Ayakkabı', 'Bot & Çizme', 'Topuklu 
 
 <body>
 
-    <!-- Header (Same as index) -->
     <header>
         <div class="container header-container">
             <a href="index.php" class="logo-container">
@@ -140,7 +130,6 @@ $categories = ['Spor Ayakkabı', 'Günlük Ayakkabı', 'Bot & Çizme', 'Topuklu 
         </div>
     </header>
 
-    <!-- Navigation -->
     <nav class="main-nav">
         <div class="container">
             <ul class="nav-list">
@@ -182,14 +171,12 @@ $categories = ['Spor Ayakkabı', 'Günlük Ayakkabı', 'Bot & Çizme', 'Topuklu 
         </div>
     </nav>
 
-    <!-- Listings -->
     <div class="container">
         <div class="listing-breadcrumb">
             <a href="index.php">Ana Sayfa</a> > <a href="index.php">Moda</a> > <span>Ayakkabı & Çanta</span>
         </div>
 
         <div class="listing-container">
-            <!-- Sidebar -->
             <aside class="filter-container">
                 <div class="filter-group">
                     <div class="filter-header">Kategoriler</div>
@@ -257,7 +244,6 @@ $categories = ['Spor Ayakkabı', 'Günlük Ayakkabı', 'Bot & Çizme', 'Topuklu 
                 </script>
             </aside>
 
-            <!-- Grid -->
             <main class="listing-content">
                 <div class="listing-header">
                     <h1 class="listing-title">Ayakkabı & Çanta</h1>

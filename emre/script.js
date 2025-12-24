@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Banner Carousel Logic
     const slides = document.querySelectorAll('.banner-slide');
     const dots = document.querySelectorAll('.slider-dots .dot');
     const prevBtn = document.querySelector('.slider-btn.prev');
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
         slides.forEach(slide => slide.classList.remove('active'));
         dots.forEach(dot => dot.classList.remove('active'));
 
-        // Handle wrapping
         if (index >= slides.length) currentSlide = 0;
         else if (index < 0) currentSlide = slides.length - 1;
         else currentSlide = index;
@@ -28,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function () {
         showSlide(currentSlide - 1);
     }
 
-    // Event Listeners
     if (nextBtn) nextBtn.addEventListener('click', () => {
         nextSlide();
         resetInterval();
@@ -46,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Auto play
     function startInterval() {
         slideInterval = setInterval(nextSlide, 5000);
     }

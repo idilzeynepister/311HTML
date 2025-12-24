@@ -8,7 +8,6 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Fetch Cart Items
 $sql = "SELECT c.id as cart_id, c.quantity, p.id as product_id, p.name, p.price, p.image_url, p.brand, p.old_price 
         FROM cart c 
         JOIN products p ON c.product_id = p.id 
@@ -167,7 +166,6 @@ while ($row = $result->fetch_assoc()) {
 
 <body>
 
-    <!-- Header (Simple version for cart) -->
     <header style="background:#fff; border-bottom:1px solid #eee;">
         <div class="container header-container">
             <a href="index.php" class="logo-container">
@@ -185,7 +183,6 @@ while ($row = $result->fetch_assoc()) {
     </header>
 
     <div class="container cart-page-container">
-        <!-- Cart Items -->
         <div class="cart-items-wrapper">
             <div class="cart-header">Sepetim (<span id="cart-count"><?php echo count($cart_items); ?></span> Ürün)</div>
 
@@ -230,7 +227,6 @@ while ($row = $result->fetch_assoc()) {
             <?php endif; ?>
         </div>
 
-        <!-- Order Summary -->
         <div class="cart-summary-wrapper">
             <div class="cart-header">Sipariş Özeti</div>
 
@@ -252,21 +248,18 @@ while ($row = $result->fetch_assoc()) {
         </div>
     </div>
 
-    <!-- Interactive Cart Scripts -->
     <script>
         function updateCartItem(cartId, change, unitPrice) {
             const qtyInput = document.getElementById('qty-' + cartId);
             let currentQty = parseInt(qtyInput.value);
             let newQty = currentQty + change;
 
-            if (newQty < 1) return; // Prevent going below 1
+            if (newQty < 1) return;
 
-            // Optimistic UI Update
             qtyInput.value = newQty;
             updatePriceDisplay(cartId, newQty, unitPrice);
             recalculateTotal();
 
-            // AJAX Update
             const formData = new FormData();
             formData.append('cart_id', cartId);
             formData.append('quantity', newQty);
@@ -278,7 +271,6 @@ while ($row = $result->fetch_assoc()) {
                 .then(r => r.json())
                 .then(data => {
                     if (data.status !== 'success') {
-                        // Revert on failure
                         qtyInput.value = currentQty;
                         updatePriceDisplay(cartId, currentQty, unitPrice);
                         recalculateTotal();
@@ -301,7 +293,6 @@ while ($row = $result->fetch_assoc()) {
                 .then(data => {
                     if (data.status === 'success') {
                         document.getElementById('item-' + cartId).remove();
-                        // Check if cart is empty
                         const remainingItems = document.querySelectorAll('.cart-item');
                         document.getElementById('cart-count').innerText = remainingItems.length;
 
@@ -328,7 +319,6 @@ while ($row = $result->fetch_assoc()) {
         function recalculateTotal() {
             let total = 0;
             document.querySelectorAll('.cart-item-price span').forEach(span => {
-                // Parse "1.200,50" -> 1200.50
                 let valStr = span.textContent.replace(/\./g, '').replace(',', '.');
                 total += parseFloat(valStr);
             });
