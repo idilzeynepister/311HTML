@@ -49,7 +49,7 @@ INSERT INTO products (name, price, old_price, image_url, brand, discount_rate, c
 ('Puma Rider FV Günlük Ayakkabı', 2300.00, 3000.00, 'https://korayspor.sm.mncdn.com/mnresize/1920/-/korayspor/products/30760501_1.jpg', 'Puma', 23, NULL, 4.5, 75),
 ('JJ T-Shirt Basic', 299.00, 400.00, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfDv49YDxnG-OLzpg_t7Ch2TZXozuJDW2dvQ&s', 'Jack & Jones', 25, 'Sepette %20', 4.2, 500),
 ('JJ Denim Pantolon', 899.00, 1200.00, 'https://cdn.dsmcdn.com/mnresize/420/620/ty1782/prod/QC_PREP/20251031/19/1f72434e-429e-3de0-ab45-7f572c58ab5b/1_org_zoom.jpg', 'Jack & Jones', 25, NULL, 4.6, 340),
-('JJ Günlük Ayakkabı Sneaker', 1200.00, 1600.00, 'https://cdn03.ciceksepeti.com/cicek/kcm11683302-1/L/jj-stiller-851-1-erkek-gunluk-ayakkabi-kcm11683302-2-f1f8f771d4334c7f9055da95a89d7275.jpg', 'Jack & Jones', 25, NULL, 4.4, 210),
+('JJ Günlük Ayakkabı Sneaker', 1200.00, 1600.00, 'https://floimages.mncdn.com/media/catalog/product/25-07/01/102053385_f1.jpg', 'Jack & Jones', 25, NULL, 4.4, 210),
 ('Mavi Slim Fit Jean', 799.00, 1100.00, 'https://www.sementa.com/cdn/shop/files/eskitme-yikamali-slim-fit-jean-pantolon-mavi-32722.jpg?v=1738787108&width=1600', 'Mavi', 27, NULL, 4.7, 800),
 ('Mavi Günlük Ayakkabı', 950.00, 1400.00, 'https://static.ticimax.cloud/55294/uploads/urunresimleri/buyuk/mavi-kadin-gunluk-ayakkabi-9f-467.png', 'Mavi', 32, 'Sepette %10', 4.5, 600),
 ('Mavi Kot Ceket', 1200.00, 1800.00, 'https://cdn.dsmcdn.com/mnresize/420/620/ty1761/prod/QC_ENRICHMENT/20250922/05/ca9615b1-3992-3136-b2da-32928989e17c/1_org_zoom.jpg', 'Mavi', 33, NULL, 4.6, 250),
