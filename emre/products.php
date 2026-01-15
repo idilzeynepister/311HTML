@@ -29,7 +29,6 @@ if (isset($_GET['brand']) && !empty($_GET['brand'])) {
 
 if (isset($_GET['category']) && !empty($_GET['category'])) {
     $whereClauses[] = "(name LIKE ? OR brand LIKE ?)";
-    $whereClauses[] = "(name LIKE ? OR brand LIKE ?)";
     $params[] = "%" . $_GET['category'] . "%";
     $params[] = "%" . $_GET['category'] . "%";
     $types .= "ss";
