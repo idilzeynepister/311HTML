@@ -1008,6 +1008,7 @@ footer {
     font-size: 12px;
     padding: 3px 6px;
     border-radius: 3px;
+    z-index: 10;
 }
 
 .pl-fav {
@@ -1024,6 +1025,7 @@ footer {
     color: #ccc;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    z-index: 10;
 }
 
 .pl-fav:hover {

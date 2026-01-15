@@ -293,7 +293,7 @@ if ($result) {
                     <span style="font-weight: 400; color:#ccc;">22-25 Aralık</span>
                 </div>
             </a>
-            <a href="products.php?brand=USPOLO" class="brand-box" style="text-decoration:none;">
+            <a href="products.php?brand=US+POLO+ASSN." class="brand-box" style="text-decoration:none;">
                 <div class="brand-visual"
                     style="background-image: url('https://placehold.co/400x150/f0f0f0/333?text=US+POLO');"></div>
                 <div class="brand-info">
@@ -317,7 +317,7 @@ if ($result) {
                     <span style="font-weight: 400; color:#ccc;">22-25 Aralık</span>
                 </div>
             </a>
-            <a href="products.php?brand=SaatSaat" class="brand-box" style="text-decoration:none;">
+            <a href="products.php?brand=Saat%26Saat" class="brand-box" style="text-decoration:none;">
                 <div class="brand-visual"
                     style="background-image: url('https://placehold.co/400x150/f0f0f0/333?text=saat%26saat');"></div>
                 <div class="brand-info">
@@ -334,7 +334,7 @@ if ($result) {
                     <span style="font-weight: 400; color:#ccc;">22-25 Aralık</span>
                 </div>
             </a>
-            <a href="products.php?brand=MAI" class="brand-box" style="text-decoration:none;">
+            <a href="products.php?brand=MAI+Studio" class="brand-box" style="text-decoration:none;">
                 <div class="brand-visual"
                     style="background-image: url('https://placehold.co/400x150/f0f0f0/333?text=MAI+STUDIOS');"></div>
                 <div class="brand-info">
