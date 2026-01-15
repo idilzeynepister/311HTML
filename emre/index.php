@@ -154,7 +154,8 @@ if ($result) {
                     <div class="promo-text-box">
                         <h3>Yeni Sezon</h3>
                         <h1>Mavi'de Büyük Kış İndirimi</h1>
-                        <a href="products.php" class="btn-pink">Fırsatı Kaçırma <i class="fas fa-arrow-right"></i></a>
+                        <a href="products.php?brand=Mavi" class="btn-pink">Fırsatı Kaçırma <i
+                                class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -179,7 +180,7 @@ if ($result) {
                     <div class="promo-text-box">
                         <h3>Jack & Jones</h3>
                         <h1>Erkek Modasında Dev İndirim</h1>
-                        <a href="products.php?brand=JackJones" class="btn-pink">Alışverişe Başla <i
+                        <a href="products.php?brand=Jack+%26+Jones" class="btn-pink">Alışverişe Başla <i
                                 class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
@@ -192,7 +193,7 @@ if ($result) {
                     <div class="promo-text-box">
                         <h3>Mücevher & Saat</h3>
                         <h1>Yılbaşına Özel Fırsatlar</h1>
-                        <a href="products.php?category=Mucevher" class="btn-pink">İncele <i
+                        <a href="products.php?brand=Mucevher" class="btn-pink">İncele <i
                                 class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
