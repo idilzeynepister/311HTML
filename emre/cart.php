@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-$sql = "SELECT c.id as cart_id, c.quantity, p.id as product_id, p.name, p.price, p.image_url, p.brand, p.old_price 
+$sql = "SELECT c.id as cart_id, c.quantity, c.size, p.id as product_id, p.name, p.price, p.image_url, p.brand, p.old_price 
         FROM cart c 
         JOIN products p ON c.product_id = p.id 
         WHERE c.user_id = ?";
@@ -195,6 +195,10 @@ while ($row = $result->fetch_assoc()) {
                                 <a href="product_detail.php?id=<?php echo $item['product_id']; ?>"
                                     class="cart-item-title"><?php echo htmlspecialchars($item['name']); ?></a>
                                 <div class="cart-item-brand">Marka: <?php echo htmlspecialchars($item['brand']); ?></div>
+                                <?php if ($item['size'] && $item['size'] != 'STD'): ?>
+                                    <div class="cart-item-brand">Beden:
+                                        <strong><?php echo htmlspecialchars($item['size']); ?></strong></div>
+                                <?php endif; ?>
                             </div>
                             <div class="cart-item-controls">
                                 <div class="quantity-selector" style="transform: scale(0.8); transform-origin: left;">

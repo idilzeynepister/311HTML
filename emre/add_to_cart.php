@@ -18,18 +18,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
-    $sql = "SELECT id, price FROM products WHERE id = $product_id";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows == 0) {
-        echo json_encode(['status' => 'error', 'message' => 'Ürün bulunamadı.']);
+    $size = isset($_POST['size']) ? trim($_POST['size']) : null;
+    if (empty($size)) {
+        echo json_encode(['status' => 'error', 'message' => 'Lütfen beden seçiniz.']);
         exit;
     }
 
-    $sql = "INSERT INTO cart (user_id, product_id, quantity) VALUES ($user_id, $product_id, $quantity)
+    // Check stock
+    $stmt = $conn->prepare("SELECT stock_quantity FROM product_variants WHERE product_id = ? AND size = ?");
+    $stmt->bind_param("is", $product_id, $size);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows == 0) {
+        echo json_encode(['status' => 'error', 'message' => 'Bu bedene ait stok bulunamadı.']);
+        exit;
+    }
+
+    $variant = $result->fetch_assoc();
+    if ($variant['stock_quantity'] < $quantity) {
+        echo json_encode(['status' => 'error', 'message' => 'Yetersiz stok. Kalan: ' . $variant['stock_quantity']]);
+        exit;
+    }
+
+    // Insert or Update Cart
+    // Note: quantity is passed as VALUES(quantity) in the ON DUPLICATE clause
+    $sql = "INSERT INTO cart (user_id, product_id, size, quantity) VALUES (?, ?, ?, ?)
             ON DUPLICATE KEY UPDATE quantity = quantity + VALUES(quantity)";
 
-    if ($conn->query($sql)) {
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("iisi", $user_id, $product_id, $size, $quantity);
+
+    if ($stmt->execute()) {
         echo json_encode(['status' => 'success', 'message' => 'Ürün sepete eklendi.']);
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Bir hata oluştu: ' . $conn->error]);

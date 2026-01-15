@@ -14,6 +14,17 @@ if ($id > 0) {
     }
 }
 
+$variants = [];
+if ($product) {
+    $stmt = $conn->prepare("SELECT * FROM product_variants WHERE product_id = ? ORDER BY FIELD(size, 'XS', 'S', 'M', 'L', 'XL', 'XXL', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45')");
+    $stmt->bind_param("i", $product['id']);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    while ($row = $res->fetch_assoc()) {
+        $variants[] = $row;
+    }
+}
+
 if (!$product) {
     die("Product not found.");
 }
@@ -202,6 +213,24 @@ if (!$product) {
                 </div>
 
                 <div class="detail-actions">
+                    <?php if ($product['type'] != 'std' && count($variants) > 0): ?>
+                        <div class="size-selector-container">
+                            <div style="font-weight:600; margin-bottom:5px;">Beden Seç:</div>
+                            <div class="size-options">
+                                <?php foreach ($variants as $v): ?>
+                                    <button class="size-btn <?php echo ($v['stock_quantity'] == 0) ? 'disabled' : ''; ?>"
+                                        data-size="<?php echo $v['size']; ?>" onclick="selectSize(this)">
+                                        <?php echo $v['size']; ?>
+                                    </button>
+                                <?php endforeach; ?>
+                            </div>
+                            <input type="hidden" id="selectedSize" value="">
+                        </div>
+                    <?php else: ?>
+                        <!-- Hidden input for standard products -->
+                        <input type="hidden" id="selectedSize" value="STD">
+                    <?php endif; ?>
+
                     <div class="quantity-selector">
                         <button class="qty-btn" onclick="updateQty(-1)">-</button>
                         <input type="text" id="productQty" value="1" class="qty-input" readonly>
@@ -249,13 +278,33 @@ if (!$product) {
             qtyInput.value = newQty;
         }
 
+        function selectSize(btn) {
+            if (btn.classList.contains('disabled')) return;
+
+            // Remove active class from all
+            document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+
+            // Add active class
+            btn.classList.add('selected');
+
+            // Update hidden input
+            document.getElementById('selectedSize').value = btn.getAttribute('data-size');
+        }
+
         function prepareAddToCart() {
             const qty = document.getElementById('productQty').value;
             const productId = <?php echo $product['id']; ?>;
+            const size = document.getElementById('selectedSize').value;
+
+            if (!size) {
+                alert("Lütfen beden seçiniz.");
+                return;
+            }
 
             const formData = new FormData();
             formData.append('product_id', productId);
             formData.append('quantity', qty);
+            formData.append('size', size);
 
             fetch('add_to_cart.php', {
                 method: 'POST',
