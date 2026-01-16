@@ -774,7 +774,6 @@ footer {
 
 .add-to-cart-btn {
     width: 300px;
-    /* Fixed wider width as requested */
     height: 48px;
     background-color: #5fba4b;
     color: white;
@@ -1089,7 +1088,6 @@ footer {
     margin-top: 5px;
 }
 
-/* Size Selector Styles */
 .size-selector-container {
     margin-bottom: 20px;
 }

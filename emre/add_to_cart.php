@@ -41,8 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
-    // Insert or Update Cart
-    // Note: quantity is passed as VALUES(quantity) in the ON DUPLICATE clause
     $sql = "INSERT INTO cart (user_id, product_id, size, quantity) VALUES (?, ?, ?, ?)
             ON DUPLICATE KEY UPDATE quantity = quantity + VALUES(quantity)";
 

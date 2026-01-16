@@ -1,7 +1,6 @@
 CREATE DATABASE IF NOT EXISTS n11;
 USE n11;
 
--- Disable foreign key checks for clean drop
 SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS cart;
 DROP TABLE IF EXISTS product_variants;
@@ -9,7 +8,6 @@ DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS users;
 SET FOREIGN_KEY_CHECKS = 1;
 
--- 1. Users Table
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
@@ -21,7 +19,6 @@ CREATE TABLE users (
 INSERT INTO users (username, password, full_name, email) VALUES 
 ('admin', '1234', 'Admin User', 'admin@n11.com');
 
--- 2. Products Table
 CREATE TABLE products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -36,7 +33,6 @@ CREATE TABLE products (
     type ENUM('cloth', 'shoe', 'std') DEFAULT 'std'
 );
 
--- Seed Products (Initial type will be 'std', updated below)
 INSERT INTO products (name, price, old_price, image_url, brand, discount_rate, coupon, rating, review_count) VALUES
 ('Adidas Superstar Spor Ayakkabı', 2499.00, 3299.00, 'https://korayspor.sm.mncdn.com/mnresize/1920/-/korayspor/products/JH7032_3.jpg', 'Adidas', 24, NULL, 4.8, 1500),
 ('Adidas Stan Smith Spor Ayakkabı', 2100.00, 2800.00, 'https://static.ticimax.cloud/37646/uploads/urunresimleri/buyuk/adidas-stan-smith-erkek-gunluk-spor-ay-7f-4e7.jpg', 'Adidas', 25, 'Sepette %10', 4.7, 890),
@@ -87,11 +83,9 @@ INSERT INTO products (name, price, old_price, image_url, brand, discount_rate, c
 ('Derimod Platform Topuklu Ayakkabı', 1500.00, 2400.00, 'https://derimod.com.tr/cdn/shop/files/bb21cd1330e7870a7c0ec28125054ddc_d1fade88-f534-4157-83a6-38ccbe1b5dcb_2048x2048.jpg?v=1755208287', 'Derimod', 37, NULL, 4.4, 150),
 ('Bambi Klasik Topuklu Ayakkabı', 900.00, 1500.00, 'https://static.ticimax.cloud/5412/uploads/urunresimleri/buyuk/siyah-kadin-klasik-topuklu-ayakkabi-k0-123894.jpg', 'Bambi', 40, NULL, 4.1, 300);
 
--- Update Product Types automatically
 UPDATE products SET type = 'shoe' WHERE name LIKE '%Ayakkabı%' OR name LIKE '%Bot%' OR name LIKE '%Çizme%';
 UPDATE products SET type = 'cloth' WHERE name LIKE '%T-Shirt%' OR name LIKE '%Pantolon%' OR name LIKE '%Gömlek%' OR name LIKE '%Elbise%' OR name LIKE '%Kazak%' OR name LIKE '%Ceket%' OR name LIKE '%Hoodie%' OR name LIKE '%Triko%' OR name LIKE '%Jean%';
 
--- 3. Product Variants Table
 CREATE TABLE product_variants (
     id INT AUTO_INCREMENT PRIMARY KEY,
     product_id INT NOT NULL,
@@ -101,7 +95,6 @@ CREATE TABLE product_variants (
     UNIQUE KEY unique_product_size (product_id, size)
 );
 
--- Seed Shoe Sizes (36-45)
 INSERT INTO product_variants (product_id, size, stock_quantity)
 SELECT p.id, s.size, 50 
 FROM products p 
@@ -111,7 +104,6 @@ CROSS JOIN (
 ) s 
 WHERE p.type = 'shoe';
 
--- Seed Cloth Sizes (XS-XL)
 INSERT INTO product_variants (product_id, size, stock_quantity)
 SELECT p.id, s.size, 50 
 FROM products p 
@@ -120,13 +112,10 @@ CROSS JOIN (
 ) s 
 WHERE p.type = 'cloth';
 
--- Seed Standard Items (STD)
 INSERT INTO product_variants (product_id, size, stock_quantity)
 SELECT p.id, 'STD', 100 
 FROM products p 
 WHERE p.type = 'std';
-
--- 4. Cart Table
 CREATE TABLE cart (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,

@@ -78,15 +78,15 @@ if ($result) {
                 <li class="nav-item">
                     <a href="products.php"
                         style="display:flex; align-items:center; gap:5px; text-decoration:none; color:inherit; height:100%;">
-                        <img src="https://n11scdn.akamaized.net/a1/org/23/04/18/76/01/26/51/76012651.svg" width="24"
-                            alt="">
+                        <img src="https://n11scdn.akamaized.net/a1/30/23/04/27/50/92/89/68/98/82/81/83/46/87911743275366201592.png"
+                            width="24" alt="">
                         <span>Moda</span>
                     </a>
                     <div class="dropdown-menu">
                         <div class="dropdown-header">Moda</div>
                         <div class="dropdown-grid">
                             <a href="products.php" class="dropdown-item">
-                                <img src="https://n11scdn.akamaized.net/a1/org/23/04/18/76/01/26/51/76012651.svg"
+                                <img src="https://n11scdn.akamaized.net/a1/30/25/10/31/86/10/04/40/49/86/94/12/22/42843726181450428735.png"
                                     class="dropdown-thumb" alt="">
                                 <span class="dropdown-title">Ayakkabı & Çanta</span>
                             </a>
